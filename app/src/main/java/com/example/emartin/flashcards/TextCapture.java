@@ -1,3 +1,4 @@
+
 package com.example.emartin.flashcards;
 
 
@@ -32,18 +33,21 @@ public class TextCapture extends AppCompatActivity {
         boolean autoFocus = true;
         boolean useFlash = false;
 
+        /*
         //check for camera permission
         int rc = ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
         if(rc == PackageManager.PERMISSION_GRANTED)
             createCameraSource(autoFocus, useFlash);
         else
             requestCameraPermission()
+            */
 
     }
 
     /**
      * Create and start the camera
      */
+    /*
     private void createCameraSource(boolean autoFocus, boolean useFlash) {
 
         Context context = getApplicationContext();
@@ -72,6 +76,7 @@ public class TextCapture extends AppCompatActivity {
                 .setRequestedFps(15.0f)
                 .build();
     }
+    */
 
     //.setFlashMode(if(useFlash) Camera.Parameters.FLASH_MODE_TORCH else null)
     //.setFocusMode(if(autoFocus) Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE else null)
@@ -79,6 +84,7 @@ public class TextCapture extends AppCompatActivity {
     /**
      * Handles requesting camera permissions
      */
+    /*
     private void requestCameraPermission() {
         Log.w("TAG", "Camera permission not currently granted.  Requesting Permission...");
 
@@ -94,6 +100,7 @@ public class TextCapture extends AppCompatActivity {
         //listener.setOnClickListener(ActivityCompat.requestPermissions(this, permissions, RC_HANDLE_CAMERA_PERM);
 
     }
+    */
 
     //remove?
     private void textSplit(TextBlock text) {

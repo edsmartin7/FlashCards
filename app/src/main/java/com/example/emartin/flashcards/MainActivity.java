@@ -1,9 +1,16 @@
 package com.example.emartin.flashcards;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 //card converter
 //ml vision api converter
@@ -21,8 +28,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void readFile(View view) {
-        FileReader reader = new FileReader();
-        reader.openFile(); //println?
+
+            FileReader reader = new FileReader();
+            reader.openFile(); //println?
+
+
     }
 
 }

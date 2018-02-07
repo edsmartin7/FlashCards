@@ -1,6 +1,8 @@
 package com.example.emartin.flashcards;
 
 
-public class GameActivity {
+import android.support.v7.app.AppCompatActivity;
+
+public class GameActivity extends AppCompatActivity {
 
 }

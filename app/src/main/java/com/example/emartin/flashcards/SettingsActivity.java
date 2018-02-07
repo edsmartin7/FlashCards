@@ -1,8 +1,8 @@
 package com.example.emartin.flashcards;
 
-/**
- * Created by emartin on 2/2/18.
- */
+import android.support.v7.app.AppCompatActivity;
 
-public class SettingsActivity {
+
+public class SettingsActivity extends AppCompatActivity {
+
 }
