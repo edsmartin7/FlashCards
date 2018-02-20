@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">FlashCards</string>
     <string name="low_storage_error">Your device does not have enough storage</string>
+    <string name="app_title">FLASHCARDS</string>
 </resources>
