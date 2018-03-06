@@ -22,6 +22,9 @@ import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
 
+/*
+Take in an image file and scan it for a TextBlock to parse
+ */
 public class TextCapture extends AppCompatActivity {
 
     private static int RC_HANDLE_CAMERA_PERM = 2;
@@ -39,8 +42,8 @@ public class TextCapture extends AppCompatActivity {
         if(rc == PackageManager.PERMISSION_GRANTED)
             createCameraSource(autoFocus, useFlash);
         else
-            requestCameraPermission()
-            */
+            requestCameraPermission();
+         */
 
     }
 

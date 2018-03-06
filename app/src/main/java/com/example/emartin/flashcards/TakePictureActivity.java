@@ -16,7 +16,7 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 
 
-public class TakePicture extends AppCompatActivity {
+public class TakePictureActivity extends AppCompatActivity {
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
     static final int REQUEST_TAKE_PHOTO = 1;
@@ -26,9 +26,10 @@ public class TakePicture extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        startTakePictureIntent();
     }
 
-    private void startTakePictureIntent() {
+    public void startTakePictureIntent() {
 
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
@@ -40,12 +41,9 @@ public class TakePicture extends AppCompatActivity {
                 Log.e("TAG", "There was an error:  " + ioe);
             }
 
-            //if photoFile created
             if(photoFile != null) {
-                Uri photoURI = FileProvider.getUriForFile(this,
-                        "com.example.android.fileprovider",
-                        photoFile); //authority uri???
-
+                //Uri photoURI = FileProvider.getUriForFile(this, "com.example.emartin.flashcards", photoFile);
+                Uri photoURI = Uri.fromFile(photoFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
             }
@@ -53,9 +51,7 @@ public class TakePicture extends AppCompatActivity {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
 
-
     }
-
 
     private File createImageFile() throws IOException {
 
@@ -73,7 +69,6 @@ public class TakePicture extends AppCompatActivity {
         mCurrentPhotoPath = image.getAbsolutePath();
         return image;
     }
-
 
     //make take photo avaialble in phone's Gallery
     private void galleryAddPic() {

@@ -1,8 +1,11 @@
 package com.example.emartin.flashcards;
 
-/**
- * Created by emartin on 2/9/18.
- */
 
-public class FileUploadFragment {
+import android.support.v4.app.Fragment;
+
+//Open a dialog box to get an existing file from a file path
+public class FileUploadFragment extends Fragment {
+
+
+
 }
