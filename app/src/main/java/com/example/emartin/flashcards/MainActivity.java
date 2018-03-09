@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void addNotesUpload(View view) {
-        Intent intent = new Intent(this, FileUploadFragment.class);
+        Intent intent = new Intent(this, FileUploadActivity.class);
         startActivity(intent);
     }
 

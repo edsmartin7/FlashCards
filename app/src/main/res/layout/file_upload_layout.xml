@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.emartin.flashcards.FileUploadActivity">
+
+    <LinearLayout
+        android:id="@+id/file_preview"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#62FF00"
+        android:layout_weight="5"
+        >
+
+        <ImageView
+            android:id="@+id/current_photo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/file_dirs"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FF9D00"
+        android:layout_weight="5"
+        >
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/storage_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#FF00AE"
+        android:layout_weight="1"
+        android:gravity="center"
+        >
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Interal Storage"
+            android:onClick="switchFileSource"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SD Card"
+            android:onClick="switchFileSource"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Other Location"
+            android:onClick="switchFileSource"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>
