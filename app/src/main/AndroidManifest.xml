@@ -48,6 +48,10 @@
         <activity android:name=".GameResultsActivity">
 
         </activity>
+        <activity android:name=".TextCaptureActivity">
+
+        </activity>
+
 
         <provider
             android:name="android.support.v4.content.FileProvider"
