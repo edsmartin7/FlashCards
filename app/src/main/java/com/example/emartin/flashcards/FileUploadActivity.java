@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.io.File;
 
@@ -18,11 +19,16 @@ import java.io.File;
 //public class FileUploadFragment extends Fragment {
 public class FileUploadActivity extends AppCompatActivity {
 
+    private static TextView file_path;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.file_upload_layout);
+
+        file_path = (TextView) findViewById(R.id.current_dir);
+        String path = Environment.getExternalStorageDirectory().toString()+"/Pictures";
+        file_path.setText(path);
     }
 
 

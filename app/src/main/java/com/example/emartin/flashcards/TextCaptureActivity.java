@@ -62,12 +62,13 @@ public class TextCaptureActivity extends AppCompatActivity {
             }
 
 
-        //get text from input bitmap pic and add to Sparsearray
-        Frame frame = new Frame.Builder().setBitmap(pic).build();
-        SparseArray<TextBlock> map = textRecognizer.detect(frame);
-        //parse sparesearrray and print each line of text to Log
+            //get text from input bitmap pic and add to Sparsearray
+            //Frame frame = new Frame.Builder().setBitmap(pic).build();
+            //SparseArray<TextBlock> map = textRecognizer.detect(frame);
+            //parse sparesearrray and print each line of text to Log
 
-        //release TextRecognizer in onDestroy()
+            //release TextRecognizer in onDestroy()
+        }
 
     }
 
