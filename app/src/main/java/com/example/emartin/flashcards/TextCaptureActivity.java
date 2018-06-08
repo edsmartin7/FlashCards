@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.SparseArray;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.vision.CameraSource;
@@ -20,8 +21,8 @@ import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
 
-/*
-Take in an image file and scan it for a TextBlock to parse
+/**
+ * Take in an image file and scan it for a TextBlock to parse
  */
 public class TextCaptureActivity extends AppCompatActivity {
 
@@ -33,13 +34,17 @@ public class TextCaptureActivity extends AppCompatActivity {
         setContentView(R.layout.text_capture_activity);
 
         //set photo extra to layout
-        Intent intent = getIntent();
-        Bundle image = intent.getExtras();
-        ImageView imageView = (ImageView) findViewById(R.id.photo_image);
-        imageView.setImageResource(R.drawable.test1); //
-
+        //Intent intent = getIntent();
+        //Bundle image = intent.getExtras();
+        //ImageView imageView = (ImageView) findViewById(R.id.photo_image);
+        //imageView.setImageResource(R.drawable.test1);
+        LinearLayout imageLayout = (LinearLayout) findViewById(R.id.pic_image);
+        ImageView imageView = new ImageView(TextCaptureActivity.this);
+        imageView.setBackgroundResource(R.drawable.test1);
+        imageLayout.addView(imageView);
     }
 
+    //
     public void getSomeText() {
 
         Context context = getApplicationContext();

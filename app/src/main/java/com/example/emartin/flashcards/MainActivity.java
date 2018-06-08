@@ -9,13 +9,9 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-//card converter
-//ml vision api converter
-//upload and read document (different extensions) converter
-//googledoc, .txt, .pdf,
-//settings
-//game screen/mode (keep track of points)
-//voice recognition (given definition, speak one word answer) (duolingo)
+/**
+ * The main home screen
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -26,32 +22,39 @@ public class MainActivity extends AppCompatActivity {
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
     }
 
-    public void readFile(View view) {
-
-    }
-
+    //Start a new quiz game
     public void startGame(View view) {
         Intent intent = new Intent(this, GameActivity.class);
         startActivity(intent);
     }
 
+    //Add notes to system by taking a new photo
     public void addNotesCamera(View view) {
         Intent intent = new Intent(this, TakePictureActivity.class);
         startActivity(intent);
     }
 
+    //Add notes to system by checking for existing photos
     public void addNotesUpload(View view) {
         Intent intent = new Intent(this, FileUploadActivity.class);
         startActivity(intent);
     }
 
+    //Get the user's current stats
     public void userStats(View view) {
         Intent intent = new Intent(this, UserStatsActivity.class);
         startActivity(intent);
     }
 
+    //App settings
     public void openSettings(View view) {
         Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+    }
+
+    //Testing adding notes by taking new photo
+    public void readFile(View view) {
+        Intent intent = new Intent(this, TextCaptureActivity.class);
         startActivity(intent);
     }
 

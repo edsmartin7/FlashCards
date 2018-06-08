@@ -9,16 +9,40 @@
     tools:context="com.example.emartin.flashcards.TextCaptureActivity"
     >
 
-    <ImageView
-        android:id="@+id/photo_image"
+    <LinearLayout
+        android:id="@+id/pic_image"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+        android:layout_height="1dp"
+        android:orientation="vertical"
+        android:layout_weight="9"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        >
 
-    <Button
-        android:id="@+id/capture_text_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
+        <!-- selected image (ImageView) is displayed here -->
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:gravity="center"
+        >
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Take Picture"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Get Text from Picture"
+            />
+
+    </LinearLayout>
 
 </LinearLayout>
