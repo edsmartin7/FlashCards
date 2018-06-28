@@ -2,79 +2,108 @@
 package com.example.emartin.flashcards;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
+import android.content.res.AssetManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.support.annotation.DrawableRes;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.util.SparseArray;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.google.android.gms.vision.CameraSource;
-import com.google.android.gms.vision.Detector;
-import com.google.android.gms.vision.Frame;
-import com.google.android.gms.vision.text.TextBlock;
-import com.google.android.gms.vision.text.TextRecognizer;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.ml.vision.FirebaseVision;
+import com.google.firebase.ml.vision.common.FirebaseVisionImage;
+import com.google.firebase.ml.vision.text.FirebaseVisionText;
+import com.google.firebase.ml.vision.text.FirebaseVisionTextDetector;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
 
 /**
  * Take in an image file and scan it for a TextBlock to parse
  */
 public class TextCaptureActivity extends AppCompatActivity {
 
-    private static String TAG = "application errors xoxo";
+    private Bitmap photoImage;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.text_capture_activity);
 
-        //set photo extra to layout
-        //Intent intent = getIntent();
-        //Bundle image = intent.getExtras();
-        //ImageView imageView = (ImageView) findViewById(R.id.photo_image);
-        //imageView.setImageResource(R.drawable.test1);
         LinearLayout imageLayout = (LinearLayout) findViewById(R.id.pic_image);
         ImageView imageView = new ImageView(TextCaptureActivity.this);
-        imageView.setBackgroundResource(R.drawable.test1);
+        photoImage = getBitmapFromAsset(this, "test2.jpg");
+        imageView.setImageBitmap(photoImage); // needs to be size adjusted
         imageLayout.addView(imageView);
     }
 
-    //
-    public void getSomeText() {
+    //ml-kit codelab method to detect text in images
+    //Text recognizer
+    public void getSomeText(View view) {
 
-        Context context = getApplicationContext();
+        FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(photoImage);
+        FirebaseVisionTextDetector detector = FirebaseVision.getInstance().getVisionTextDetector();
 
-        //create text recognizer
-        TextRecognizer textRecognizer = new TextRecognizer.Builder(context).build();
+        detector.detectInImage(image)
+                .addOnSuccessListener(new OnSuccessListener<FirebaseVisionText>() {
+                    @Override
+                    public void onSuccess(FirebaseVisionText firebaseVisionText) {
+                        processTextRecognitionResults(firebaseVisionText);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        e.printStackTrace();
+                    }
+                });
 
-        //Check if the TextRecognizer is operational
-        if (!textRecognizer.isOperational()) {
-            Log.w(TAG, "Detector dependencies are not yet available.");
+    }
 
-            // Check for low storage.  If there is low storage, the native library will not be
-            // downloaded, so detection will not become operational.
-            IntentFilter lowstorageFilter = new IntentFilter(Intent.ACTION_DEVICE_STORAGE_LOW);
-            boolean hasLowStorage = registerReceiver(null, lowstorageFilter) != null;
+    //ml-kit codelab method to parse text blocks from image
+    public void processTextRecognitionResults(FirebaseVisionText texts) {
 
-            if (hasLowStorage) {
-                Toast.makeText(this, R.string.low_storage_error, Toast.LENGTH_LONG).show();
-                Log.w(TAG, getString(R.string.low_storage_error));
-            }
+        List<FirebaseVisionText.Block> blocks = texts.getBlocks();
 
-
-            //get text from input bitmap pic and add to Sparsearray
-            //Frame frame = new Frame.Builder().setBitmap(pic).build();
-            //SparseArray<TextBlock> map = textRecognizer.detect(frame);
-            //parse sparesearrray and print each line of text to Log
-
-            //release TextRecognizer in onDestroy()
+        if (blocks.size() == 0) {
+            Toast.makeText(getApplicationContext(), "No Text Found", Toast.LENGTH_SHORT).show();
+            return;
         }
 
+        //blocks
+        //lines
+        //elements (words) // N/A, parsing by line
+        for(int x=0; x<blocks.size(); x++) {
+            List<FirebaseVisionText.Line> lines = blocks.get(x).getLines();
+            for(int y=0; y<lines.size(); y++) {
+                FirebaseVisionText.Line currentLine = lines.get(y);
+                System.out.println(currentLine.getText());
+            }
+        }
+
+    }
+
+    //ml-kit codelab method to get .jpg from asset folder
+    public static Bitmap getBitmapFromAsset(Context context, String filePath) {
+        AssetManager assetManager = context.getAssets();
+
+        InputStream is;
+        Bitmap bitmap = null;
+        try {
+            is = assetManager.open(filePath);
+            bitmap = BitmapFactory.decodeStream(is);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return bitmap;
     }
 
 }
